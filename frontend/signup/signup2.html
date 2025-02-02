@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Definindo o conjunto de caracteres e a configuração da página para responsividade em dispositivos móveis -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Link para o arquivo CSS para estilizar a página de inscrição -->
+    <link rel="stylesheet" href="signup.css">
+    
+    <title>SignUp</title> <!-- Título da página que será exibido na aba do navegador -->
+</head>
+<body>
+    <!-- Cabeçalho da página com o logo -->
+    <header>
+        <!-- Definição de política de segurança de conteúdo, permitindo apenas imagens locais e inline data URLs -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:;">
+        
+        <!-- Logo da Welldentys com link para a página inicial -->
+        <div class="logo">
+            <a href="../paginainicial/paginaInicial.html">
+                <!-- Imagem do logo -->
+                <img src="../IMG/LOGOS/LOGO_WELLDENTYS_SEM_SAUDE_ESTETICA_JPEG copy.png" alt="Logo da Welldentys" class="logo-welldentys">
+            </a>
+        </div>
+    </header>
+
+    <!-- Contêiner principal da página -->
+    <div class="countainer" id="countainer">
+        <div class="formularios" id="formulario">
+            
+            <!-- Logo de folha com link de retorno -->
+            <div class="img-logo">
+                <a href="../index.html">
+                    <img src="../../IMG/LOGOS/folha-logo.png" alt="" class="folha-logo">
+                </a>
+            </div>
+            
+            <!-- Título da página -->
+            <div class="titulo">
+                <h1>Sign Up</h1>
+            </div>
+            
+            <!-- Formulário de inscrição -->
+            <div class="formulario" id="vue-signup2">
+                <div class="form">
+                    <!-- Campo para inserir a data de nascimento -->
+                    <p>Insira sua data de nascimento</p>
+                    <input type="date" v-model="dataNascimento" required class="input">
+
+                    <!-- Campo para inserir o número de telefone -->
+                    <p>Insira o seu número de telefone</p>
+                    <input type="tel" v-model="telefone" required class="input">
+
+                    <!-- Botão para continuar com o processo de inscrição -->
+                    <div class="btn-login">
+                        <a class="login-btn" @click.prevent="goToNextPage">Continuar</a>
+                    </div>
+                </div>    
+            </div>
+        </div>
+    </div>
+
+    <!-- Importando o Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <script>
+        // Inicializando o Vue.js
+        new Vue({
+            el: '#vue-signup2',
+            data: {
+                dataNascimento: '',  // Variável para armazenar a data de nascimento
+                telefone: ''         // Variável para armazenar o número de telefone
+            },
+            methods: {
+                // Função chamada ao clicar no botão "Continuar"
+                goToNextPage() {
+                    // Verifica se os campos de data de nascimento e telefone estão preenchidos
+                    if (!this.dataNascimento || !this.telefone) {
+                        alert('Por favor, preencha todos os campos.');
+                        return;  // Não permite continuar caso algum campo esteja vazio
+                    }
+
+                    // Armazenando os dados preenchidos no localStorage para uso posterior
+                    localStorage.setItem('data_nascimento', this.dataNascimento);
+                    localStorage.setItem('telefone', this.telefone);
+
+                    // Redireciona para a próxima página do processo de inscrição
+                    window.location.href = 'signup3.html';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+    
+
+

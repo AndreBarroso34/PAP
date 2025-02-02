@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Definindo a codificação de caracteres e a configuração de responsividade para dispositivos móveis -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Link para o arquivo CSS da página de inscrição -->
+    <link rel="stylesheet" href="signup.css">
+    
+    <title>SignUp</title> <!-- Título que será exibido na aba do navegador -->
+</head>
+<body>
+    <!-- Cabeçalho da página -->
+    <header>
+        <!-- Definição de política de segurança de conteúdo, permitindo apenas imagens locais e inline data URLs -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:;">
+        
+        <!-- Logo da Welldentys com link para a página inicial -->
+        <div class="logo">
+            <a href="../paginainicial/paginaInicial.html">
+                <img src="../IMG/LOGOS/LOGO_WELLDENTYS_SEM_SAUDE_ESTETICA_JPEG copy.png" alt="Logo da Welldentys" class="logo-welldentys">
+            </a>
+        </div>
+    </header>
+
+    <!-- Contêiner principal da página -->
+    <div class="countainer" id="countainer">
+        <div class="formularios" id="formulario">
+            
+            <!-- Logo de folha com link de retorno -->
+            <div class="img-logo">
+                <a href="../index.html">
+                    <img src="../../IMG/LOGOS/folha-logo.png" alt="" class="folha-logo">
+                </a>
+            </div>
+            
+            <!-- Título da página -->
+            <div class="titulo">
+                <h1>Sign Up</h1>
+            </div>
+            
+            <!-- Formulário de inscrição -->
+            <div class="formulario">
+                <div class="form">
+                    <!-- Campo para inserir a palavra-passe -->
+                    <p>Insira uma palavra-passe</p>
+                    <input type="password" v-model="password" placeholder="Password" required class="input">
+                    
+                    <!-- Campo para confirmar a palavra-passe -->
+                    <p>Confirme a palavra-passe</p>
+                    <input type="password" v-model="confirmPassword" placeholder="Confirmar Password" required class="input">
+                    
+                    <!-- Botão para concluir a inscrição -->
+                    <div class="btn-login">
+                        <a class="login-btn" @click.prevent="submitForm">Concluir</a>
+                    </div>
+                </div>    
+            </div>
+        </div>
+    </div>
+
+    <!-- Importando Vue.js para manipulação dinâmica -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <script>
+        // Inicializando o Vue.js
+        new Vue({
+            el: '#formulario',
+            data: {
+                password: '',            // Variável para armazenar a palavra-passe
+                confirmPassword: ''      // Variável para armazenar a confirmação da palavra-passe
+            },
+            methods: {
+                // Função chamada ao clicar no botão "Concluir"
+                submitForm() {
+                    // Verifica se as palavras-passe inseridas são iguais
+                    if (this.password === this.confirmPassword) {
+                        // Recupera os dados armazenados no localStorage
+                        const nome = localStorage.getItem('nome');
+                        const sobrenomes = localStorage.getItem('sobrenomes');
+                        const email = localStorage.getItem('email');
+                        const dataNascimento = localStorage.getItem('data_nascimento');
+                        const telefone = localStorage.getItem('telefone');
+                        const pass = this.password;
+    
+                        // Verifica se todos os dados necessários foram recuperados
+                        if (!nome || !sobrenomes || !email || !dataNascimento || !telefone || !pass) {
+                            alert('Todos os campos são obrigatórios!');
+                            return;  // Se algum dado estiver faltando, não prossegue
+                        }
+    
+                        // Envia os dados para o backend via uma requisição POST
+                        fetch('http://localhost:3001/signup', {
+                            method: 'POST',
+                            body: JSON.stringify({
+                                nome: nome,
+                                sobrenomes: sobrenomes,
+                                email: email,
+                                dataNascimento: dataNascimento,
+                                telefone: telefone,
+                                pass: pass
+                            }),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                        .then(response => response.json()) // Converte a resposta para JSON
+                        .then(data => {
+                            console.log('Resposta do servidor:', data);
+                            if (data.success) {
+                                // Limpa os dados do localStorage após o envio bem-sucedido
+                                localStorage.removeItem('nome');
+                                localStorage.removeItem('sobrenomes');
+                                localStorage.removeItem('email');
+                                localStorage.removeItem('data_nascimento');
+                                localStorage.removeItem('telefone');
+
+                                alert('Conta criada com sucesso!'); // Notifica sucesso
+                                window.location.href = '../login/login.html'; // Redireciona para a página de login
+                            } else {
+                                alert('Erro ao criar conta: ' + data.message); // Exibe mensagem de erro
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Erro ao enviar dados:', error);
+                            alert('Erro ao criar conta: ' + error.message); // Exibe erro se falhar
+                        });
+                    } else {
+                        alert('As palavras-passe não são iguais!'); // Caso as senhas não coincidam
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,109 @@
+/* Import do tipo de letra Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+:root {
+    /* Definindo variáveis de cores e estilos que serão usadas no resto do código */
+    --cor-btn-verde : #95bb3b; /* Cor do botão verde */
+    --cor-btn-verde-escuro: rgb(2, 94, 2); /* Cor do botão verde quando está em estado "hover" ou ativado */
+    --sombra-fundo: 0 10px 20px rgba(0, 0, 0, 0.5); /* Sombra aplicada ao fundo */
+    --background-color: rgb(26, 26, 26); /* Cor de fundo principal */
+    --cor-texto-branco: rgb(255, 255, 255); /* Cor do texto (branco) */
+}
+
+body {
+    /* Estilos para o body */
+    background-color: var(--background-color); /* Usando a variável de cor de fundo */
+    color: var(--cor-texto-branco); /* Definindo a cor do texto como branco */
+    font-family: 'Poppins'; /* Definindo a fonte da página */
+}
+
+nav.menu a {
+    /* Estilos para os links de navegação */
+    color: white; /* Cor do texto dos links */
+    text-decoration: none; /* Removendo o sublinhado dos links */
+    font-size: 16px; /* Tamanho da fonte dos links */
+}
+
+header .logo {
+    /* Estilos para a logo no cabeçalho */
+    margin-left: 30px; /* Adicionando margem à esquerda da logo */
+}
+
+.title {
+    /* Estilo para o título das páginas */
+    text-align: center; /* Centralizando o texto */
+}
+
+/* Secção dos serviços */
+.services {
+    /* Estilos para a seção de serviços */
+    background-color: var(--background-color); /* Cor de fundo usando a variável */
+    padding: 70px 20px; /* Espaçamento interno de 70px no topo e 20px nas laterais */
+    color: white; /* Cor do texto */
+    text-align: center; /* Centralizando o texto */
+    margin-top: 100px; /* Distância entre a seção e o topo da página */
+}
+
+.services .service-items {
+    /* Estilos para os itens de serviço */
+    display: flex; /* Usando o modelo de layout flexível */
+    justify-content: center; /* Centralizando os itens horizontalmente */
+    gap: 13%; /* Definindo o espaço entre os itens */
+}
+
+.services .service-item {
+    /* Estilo para cada item de serviço */
+    background-color: #ffffff; /* Cor de fundo branca para o item */
+    border-radius: 10px; /* Bordas arredondadas para o item */
+    padding: 20px; /* Espaçamento interno do item */
+    text-align: center; /* Centralizando o conteúdo do item */
+    color: black; /* Cor do texto dentro do item */
+    width: 200px; /* Largura fixa para cada item */
+}
+
+.services .service-item img {
+    /* Estilos para as imagens dentro dos itens de serviço */
+    width: 100%; /* Fazendo a imagem ocupar 100% da largura do item */
+    border-radius: 10px; /* Bordas arredondadas na imagem */
+}
+
+.services .service-item h3 {
+    /* Estilo para os títulos dentro de cada item de serviço */
+    font-size: 18px; /* Definindo o tamanho da fonte */
+    margin: 15px 0; /* Definindo a margem em cima e embaixo do título */
+}
+
+.services .service-item button {
+    /* Estilos para o botão dentro de cada item de serviço */
+    background-color: #4CAF50; /* Cor de fundo verde para o botão */
+    color: white; /* Cor do texto do botão */
+    border: none; /* Removendo a borda do botão */
+    padding: 10px 20px; /* Espaçamento interno do botão */
+    border-radius: 5px; /* Bordas arredondadas para o botão */
+    cursor: pointer; /* Mudando o cursor para o formato de "mãozinha" ao passar sobre o botão */
+}
+
+.services .service-item button:hover {
+    /* Estilos para o botão quando ele é hover (passado o mouse por cima) */
+    background-color: #45A049; /* Cor do botão quando em hover (um verde mais escuro) */
+}
+
+.services .see-more {
+    /* Estilos para o link "ver mais" */
+    margin-top: 20%; /* Espaço acima do link */
+    display: flex; /* Usando layout flexível para alinhar os itens dentro */
+    align-items: center; /* Alinhando os itens no centro verticalmente */
+    justify-content: center; /* Centralizando os itens horizontalmente */
+    gap: 5px; /* Espaço de 5px entre os itens dentro */
+    cursor: pointer; /* Mudando o cursor para "mãozinha" ao passar o mouse */
+    color: white; /* Cor do texto do link */
+}
+
+.services .see-more i {
+    /* Estilos para o ícone dentro do link "ver mais" */
+    font-size: 18px; /* Definindo o tamanho da fonte para o ícone */
+}
+
+.service-item {
+    /* Estilo extra para o item de serviço */
+    padding-top: 2%; /* Adicionando padding no topo */
+}

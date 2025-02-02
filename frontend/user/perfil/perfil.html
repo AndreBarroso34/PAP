@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Definição do tipo de documento e a língua para acessibilidade -->
+    <meta charset="UTF-8"> <!-- Definindo o charset para UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Para garantir que o layout seja responsivo -->
+    <title>Perfil</title> <!-- Título da página -->
+
+    <!-- Link para o CSS do perfil -->
+    <link rel="stylesheet" href="./perfil.css">
+    
+    <!-- Importando o CSS do header -->
+    <link rel="stylesheet" href="../../HEADER/header.css">
+    
+    <!-- Importando o Bootstrap Icons para usar ícones -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    
+    <!-- Importando Vue.js (framework para manipulação de dados e componentes) -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    
+    <!-- Importando Axios para fazer requisições HTTP -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <!-- Contêiner principal -->
+    <div class="container">
+        
+        <!-- Header com logo e menu de navegação -->
+        <header>
+            <div class="logo">
+                <!-- Logo clicável que leva à página inicial -->
+                <a href="../paginainicial/paginaInicial.html"  >
+                    <img src="../../IMG/LOGOS/LOGO_WELLDENTYS_SEM_SAUDE_ESTETICA_JPEG copy.png" alt="Logo da " class="logo-welldentys">
+                </a>
+            </div>
+            
+            <!-- Menu de navegação com links para páginas do site -->
+            <nav class="menu">
+                <nav class="menu-primario">
+                    <a href="../paginainicial/paginainicial.html">Página Inicial</a>
+                    <a href="../marcarconsulta/checklogin.html">Consultas</a>
+                    <a href="../ajuda/ajuda.html">Ajuda</a>
+                    <a href="../perfil/perfil.html">
+                        <!-- Ícone de perfil usando Bootstrap Icons -->
+                        <i class="bi bi-person-circle"></i>
+                    </a>
+                </nav>
+            </nav>
+        </header>
+
+        <!-- Seção de perfil onde o Vue.js irá interagir com os dados -->
+        <!-- O ID 'app' é essencial para que o Vue.js funcione -->
+        <div class="perfil" id="app">
+            <!-- Exibindo o nome do usuário recuperado do localStorage -->
+            <h2>{{ userName }}</h2>
+
+            <!-- Formulário para mudar a senha -->
+            <div class="change-password">
+                <!-- Grupo de entradas para nova senha -->
+                <div class="input-group">
+                    <label for="new-password">Nova palavra-pass:</label>
+                    <input type="password" id="new-password" v-model="newPassword">
+                </div>
+    
+                <!-- Grupo de entradas para confirmar a nova senha -->
+                <div class="input-group">
+                    <label for="confirm-password">Confirmar palavra-pass:</label>
+                    <input type="password" id="confirm-password" v-model="confirmPassword">
+                </div>
+    
+                <!-- Botão para acionar a mudança de senha -->
+                <button class="btn btn-success" @click="changePassword">Mudar palavra-pass</button>
+            </div>
+            
+            <!-- Linha horizontal separadora -->
+            <hr class="line-separator">
+            
+            <!-- Seção de logout com botão para sair da conta -->
+            <div class="logout">
+                <button class="btn btn-primary" @click="logout">Sair</button>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Incluindo novamente o Vue.js para a manipulação de dados -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <!-- Script para controlar a lógica da página com Vue.js -->
+    <script>
+        new Vue({
+            el: '#app',  // A referência ao ID do elemento onde o Vue será ativo
+            data: {
+                email: '',  // Variáveis para o email e nome do usuário
+                userName: '',  // Nome do usuário recuperado do localStorage
+                newPassword: '',  // Nova senha digitada
+                confirmPassword: '',  // Confirmação da nova senha
+            },
+            created() {
+                // Recupera o nome do usuário após o login
+                this.userName = localStorage.getItem('userName');
+                
+                // Se não houver nome de usuário, redireciona para a página de login
+                if (!this.userName) {
+                    window.location.href = '../../login/login.html';  // Redireciona se não houver nome de utilizador
+                }
+            },
+            methods: {
+                logout() {
+                    // Remove as informações do usuário armazenadas no localStorage
+                    localStorage.removeItem('userName');
+                    localStorage.removeItem('email');
+                    localStorage.removeItem('password');
+                    localStorage.removeItem('telefone');
+                    
+                    // Redireciona o usuário para a página de login
+                    window.location.href = '../../login/login.html';
+                },
+                changePassword() {
+                    // Recupera o email do usuário armazenado no localStorage
+                    const userEmail = localStorage.getItem('email');  // Use o mesmo nome de chave que você usou durante o login
+                    const newPassword = this.newPassword;
+                    const confirmPassword = this.confirmPassword;
+
+                    // Verifica se os campos de senha e email estão preenchidos
+                    if (!userEmail || !newPassword || !confirmPassword) {
+                        alert('Por favor, forneça email e nova senha.');
+                        return;  // Se algum campo não estiver preenchido, não envia a requisição
+                    }
+
+                    // Verifica se as senhas são iguais
+                    if (newPassword === confirmPassword) {
+                        // Envia uma requisição POST para o servidor para mudar a senha
+                        fetch('http://localhost:3001/mudarpalavrapass', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                email: userEmail,  // Envia o email do usuário
+                                newPassword: newPassword,
+                            })
+                        })
+                        .then(response => response.json())  // Converte a resposta para JSON
+                        .then(data => {
+                            console.log('Resposta do servidor:', data);
+                            if (data.message) {
+                                alert(data.message);  // Exibe a mensagem do servidor
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Erro ao mudar a senha:', error);
+                            alert('Erro ao mudar a senha. Tente novamente.');
+                        });
+                    } else {
+                        alert('As senhas não coincidem.');  // Exibe erro caso as senhas não coincidam
+                    }
+                }
+            },
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,149 @@
+/* Importa o tipo de letra "Poppins" do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    /* Definição de variáveis de cores para reutilização no código */
+    --cor-btn-verde: #95bb3b;  /* Cor verde para botões */
+    --cor-btn-verde-escuro: rgb(2, 94, 2); /* Cor verde mais escura para o hover do botão */
+    --sombra-fundo: 0 10px 20px rgba(0, 0, 0, 0.5); /* Sombra para o fundo */
+    --background-color: rgb(26, 26, 26); /* Cor de fundo da página */
+}
+
+/* Definindo o estilo padrão para todos os elementos da página */
+* {
+    background-color: var(--background-color); /* Aplica a cor de fundo da página */
+    font-family: 'Poppins'; /* Define a fonte Poppins para todo o texto */
+}
+
+/* Estilos para o container da logo */
+.logo {
+    margin-left: 50px; /* Define a margem à esquerda */
+    margin-top: 30px; /* Define a margem superior */
+    height: 5px; /* Define a altura da logo */
+}
+
+/* Estilo específico para a classe "folha-logo" */
+.folha-logo {
+    width: 120px; /* Define a largura da imagem */
+}
+
+/* Estilo específico para a logo do Welldentys */
+.logo-welldentys {
+    width: 150px; /* Define a largura da logo */
+}
+
+/* Estilo para o container de conteúdo (centraliza os elementos) */
+.countainer {
+    display: flex; /* Ativa o Flexbox para layout flexível */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    margin-top: 10px; /* Espaçamento superior */
+}
+
+/* Estilos para os elementos <p> e <h1>, aplicando cor branca e texto normal */
+p, h1 {
+    color: white; /* Define a cor do texto como branco */
+    font-weight: normal; /* Remove o negrito do texto */
+}
+
+/* Estilo adicional para o <p>, com organização em coluna */
+p {
+    display: flex; /* Ativa o Flexbox */
+    flex-direction: column; /* Organiza os itens em coluna */
+    align-items: flex-start; /* Alinha os itens ao início */
+}
+
+/* Estilo para o título (centraliza o título com tamanho maior de fonte) */
+.titulo {
+    display: flex; /* Ativa o Flexbox */
+    justify-content: center; /* Centraliza horizontalmente */
+    font-size: 35px; /* Define o tamanho da fonte */
+}
+
+/* Estilo para o botão de login */
+.login-btn {
+    margin-top: 20px; /* Margem superior */
+    color: white; /* Cor do texto */
+    border: none; /* Remove a borda padrão */
+    padding: 10px 150px; /* Ajusta o padding para maior área clicável */
+    text-decoration: none; /* Remove o sublinhado */
+    background-color: var(--cor-btn-verde); /* Cor de fundo verde */
+    border-radius: 10px; /* Bordas arredondadas */
+}
+
+/* Efeito de hover para o botão de login, alterando a cor para o verde escuro */
+.login-btn:hover {
+    background-color: var(--cor-btn-verde-escuro); /* Altera a cor de fundo no hover */
+}
+
+/* Estilos para o container do botão de login (centraliza o botão) */
+.btn-login {
+    margin-top: 10%; /* Margem superior */
+    display: flex; /* Ativa o Flexbox */
+    justify-content: center; /* Centraliza horizontalmente */
+}
+
+/* Estilo para os campos de input */
+.input {
+    background-color: transparent; /* Fundo transparente */
+    color: #ffffff; /* Cor do texto em branco */
+    border: 1px solid #ffffff; /* Borda branca */
+    border-radius: 10px; /* Bordas arredondadas */
+    padding: 10px; /* Ajuste o padding para espaçamento adequado */
+    font-size: 16px; /* Tamanho da fonte */
+    outline: none; /* Remove o contorno padrão */
+    text-align: center; /* Centraliza o texto no campo */
+    width: 100%; /* Faz o input ocupar toda a largura disponível */
+    transition: all 0.3s ease; /* Adiciona uma animação suave */
+}
+
+/* Estilo para o texto no campo de input quando não há valor (placeholder) */
+.input::placeholder {
+    color: #cccccc; /* Cor do texto placeholder */
+}
+
+/* Estilos para a seção "Ainda não tem conta" */
+.ainda-nao-tem-conta {
+    margin-top: 30px; /* Espaçamento superior */
+    display: flex; /* Organiza os itens com Flexbox */
+    flex-direction: row; /* Organiza os itens em linha */
+    justify-content: flex-start; /* Alinha os itens à esquerda */
+    align-items: center; /* Alinha verticalmente os itens */
+    gap: 10px; /* Espaçamento entre os itens */
+    text-align: left; /* Alinha o texto à esquerda */
+    text-decoration: none; /* Remove o sublinhado */
+}
+
+/* Estilo para os links dentro da seção "Ainda não tem conta" */
+.ainda-nao-tem-conta a {
+    text-decoration: none; /* Remove o sublinhado do link */
+    color: var(--cor-btn-verde); /* Cor do link verde */
+}
+
+/* Alteração de cor no hover do link */
+.ainda-nao-tem-conta a:hover {
+    color: var(--cor-btn-verde-escuro); /* Muda a cor para o verde escuro no hover */
+    text-decoration: none; /* Garante que o sublinhado não apareça ao passar o mouse */
+}
+
+/* Estilos para o formulário */
+.form {
+    display: flex; /* Organiza os itens com Flexbox */
+    flex-direction: column; /* Organiza os itens em coluna */
+    align-items: center; /* Centraliza horizontalmente */
+}
+
+/* Estilo para o parágrafo dentro do formulário */
+.form p {
+    align-self: flex-start; /* Alinha o <p> ao início do formulário */
+    margin-bottom: 5px; /* Espaçamento inferior entre o parágrafo e o campo de input */
+}
+
+/* Estilos para o container do formulário */
+.formularios {
+    background-color: var(--cor-fundo-formulario); /* Cor de fundo definida pela variável */
+    padding: 60px 120px; /* Ajusta o padding interno */
+    border-radius: 45px; /* Bordas arredondadas */
+    box-shadow: var(--sombra-fundo); /* Aplica sombra definida na variável */
+    text-align: center; /* Centraliza o texto dentro do formulário */
+    width: 350px; /* Largura fixa do formulário */
+}

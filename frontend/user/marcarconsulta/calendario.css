@@ -1,0 +1,102 @@
+/* Define o fundo da página com uma cor suave */
+body {
+    background-color: #f4f4f4;
+}
+
+/* Estilo para o calendário */
+.calendar {
+    /* Configura a grade do calendário para ter 7 colunas (um para cada dia da semana) */
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px; /* Define o espaçamento entre as células */
+    text-align: center; /* Centraliza o texto dentro das células */
+}
+
+/* Estilo para os dias do calendário */
+.calendar .day {
+    padding: 10px; /* Adiciona um pouco de espaço dentro de cada célula */
+    cursor: pointer; /* Mostra o ponteiro do mouse ao passar sobre a célula */
+    border: 1px solid #ddd; /* Define uma borda cinza ao redor dos dias */
+    border-radius: 5px; /* Arredonda os cantos das células */
+    text-align: center; /* Garante que o texto esteja centralizado */
+}
+
+/* Estilo para o efeito de hover sobre os dias do calendário */
+.calendar .day:hover {
+    background-color: #f0f0f0; /* Altera o fundo para uma cor mais clara ao passar o mouse */
+    color: black; /* Torna o texto preto */
+}
+
+/* Estilo para os dias selecionados no calendário */
+.calendar .day.selected {
+    background-color: #4CAF50; /* Define um fundo verde para os dias selecionados */
+    color: white; /* Torna o texto branco */
+}
+
+/* Estilo para os dias desabilitados no calendário */
+.calendar .day.disabled {
+    background-color: #8d8d8d; /* Define um fundo cinza para os dias desabilitados */
+    cursor: not-allowed; /* Altera o cursor para indicar que o dia não pode ser selecionado */
+}
+
+/* Estilo para os dias da semana (abreviações como Seg, Ter, etc.) */
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* Configura a grade com 7 colunas */
+    font-weight: bold; /* Torna o texto dos dias da semana em negrito */
+}
+
+/* Adiciona um pequeno padding aos dias da semana */
+.weekdays div {
+    padding: 5px;
+}
+
+/* Estilos para a navegação de mês e ano */
+.month-nav, .year-nav {
+    display: flex;
+    justify-content: space-between; /* Espaça igualmente os itens da navegação */
+    align-items: center; /* Alinha os itens verticalmente no centro */
+    margin-bottom: 20px; /* Espaço abaixo das navegações */
+}
+
+/* Estilos para os selects de mês e ano */
+.month-nav select, .year-nav select {
+    width: 150px; /* Define a largura do select */
+    font-size: 1.2em; /* Aumenta o tamanho da fonte */
+    background-color: transparent; /* Torna o fundo transparente */
+    border: 2px solid #ddd; /* Define uma borda cinza */
+    padding: 5px; /* Adiciona um pouco de espaço dentro do select */
+    text-align: center; /* Centraliza o texto dentro do select */
+    color: #ffffff; /* Torna o texto branco */
+    appearance: none; /* Remove o estilo padrão do select */
+    -webkit-appearance: none; /* Remove o estilo no Safari */
+    -moz-appearance: none; /* Remove o estilo no Firefox */
+}
+
+/* Estilo para o container do campo de entrada de horário */
+.input-container {
+    margin-top: 15px; /* Adiciona um espaço acima */
+}
+
+/* Estilo para os botões de horário (como 10:00, 11:00, etc.) */
+.time-buttons {
+    display: flex; /* Usa o layout flexível para alinhar os botões */
+    flex-wrap: wrap; /* Permite que os botões se quebrem para a linha seguinte quando necessário */
+    gap: 5px; /* Adiciona espaço entre os botões */
+}
+
+/* Estilo para os botões de horário individuais */
+.time-buttons .btn {
+    width: 80px; /* Define a largura dos botões */
+    margin: 5px; /* Adiciona margem em torno de cada botão */
+}
+
+/* Estilo para as seções de tempo */
+.time-section {
+    margin-top: 20px; /* Adiciona espaço acima de cada seção de tempo */
+}
+
+/* Estilo para os títulos das seções (como "Escolha a data", etc.) */
+.section-title {
+    font-weight: bold; /* Torna o texto em negrito */
+}

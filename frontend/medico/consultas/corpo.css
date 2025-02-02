@@ -1,0 +1,85 @@
+:root{
+    /* Definindo variáveis globais de cores e sombras */
+    --cor-btn-verde : #95bb3b; /* Cor verde do botão */
+    --cor-btn-verde-escuro: rgb(2, 94, 2); /* Cor verde escuro do botão */
+    --sombra-fundo: 0 10px 20px rgba(0, 0, 0, 0.5); /* Sombra do fundo */
+    --background-color: rgb(26, 26, 26); /* Cor do fundo geral (cinza escuro) */
+    --cor-texto-branco: rgb(255, 255, 255); /* Cor branca para o texto */
+}
+
+/* Estilo geral para o corpo da página */
+body{
+    font-family: 'Poppins'; /* Definindo a fonte para Poppins */
+    background-color: var(--background-color); /* Cor de fundo definida pela variável */
+}
+
+/* Classe para o contêiner .app, aplicando padding nas laterais */
+.app{
+    padding-left: 5%;  /* Espaço à esquerda */
+    padding-right: 5%; /* Espaço à direita */
+}
+
+/* Estilo para os links do menu de navegação */
+nav.menu a {
+    color: white; /* Cor branca para os links */
+    text-decoration: none; /* Remover sublinhado dos links */
+    font-size: 16px; /* Definir tamanho de fonte */
+}
+
+/* Estilo das células da tabela (th e td) */
+th,
+td{
+    color: var(--cor-texto-branco); /* Cor branca para o texto da tabela */
+}
+
+/* Estilo para o cabeçalho, usando flexbox */
+.header {
+    display: flex; /* Usando flexbox para layout */
+    justify-content: space-between; /* Cria espaço entre os itens e coloca-os nas extremidades */
+    align-items: center; /* Alinha os itens verticalmente no centro */
+    width: 100%; /* Garante que o contêiner ocupe toda a largura disponível */
+}
+
+/* Estilo para o nome do médico no cabeçalho */
+.nomedomedico{
+    font-size: 34px; /* Tamanho maior para o texto */
+    color: white;    /* Cor branca para o texto */
+    font-weight: bold; /* Deixa o texto em negrito */
+    text-align: right; /* Alinha o texto à direita */
+    padding-right: 5%; /* Espaço à direita */
+}
+
+/* Estilo para os campos de input (com a classe .form-control) */
+.form-control {
+    background-color: transparent; /* Fundo transparente */
+    color: #ffffff; /* Cor do texto branca */
+    border: 1px solid #ffffff; /* Borda branca ao redor do campo */
+    border-radius: 10px; /* Bordas arredondadas */
+    padding: 10px; /* Ajusta o padding para não ficar excessivo */
+    font-size: 16px; /* Tamanho da fonte do texto */
+    outline: none; /* Remove o contorno padrão ao focar */
+    text-align: center; /* Centraliza o texto dentro do campo */
+    width: 100%; /* Faz com que o input ocupe toda a largura disponível */
+    transition: all 0.3s ease; /* Animação suave para qualquer alteração no campo */
+}
+
+/* Estilo para o texto de placeholder dentro dos inputs */
+.form-control::placeholder {
+    color: #cccccc; /* Cor cinza claro para o texto do placeholder */
+}
+
+/* Estilo para o título h4 (centrado e com cor branca) */
+h4{
+    text-align: center; /* Centraliza o texto */
+    color: var(--cor-texto-branco); /* Cor branca para o texto */
+}
+
+/* Estilo para os labels */
+label{
+    color: var(--cor-texto-branco); /* Cor branca para o texto dos labels */
+}
+
+/* Estilo para o elemento com a classe .mb-3 (espaçamento nas laterais) */
+.mb-3{
+    padding: 0 20%; /* Espaçamento de 20% nas laterais */
+}

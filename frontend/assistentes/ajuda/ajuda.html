@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Definição do conjunto de caracteres utilizado na página -->
+    <meta charset="UTF-8">
+    
+    <!-- Define o comportamento da página em dispositivos móveis -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Título da página exibido na aba do navegador -->
+    <title>Ajuda</title>
+    
+    <!-- Importação dos ícones do Bootstrap para usar em elementos como ícones -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    
+    <!-- Importação de CSS personalizado para o cabeçalho da página -->
+    <link rel="stylesheet" href="../../HEADER/header.css">
+    
+    <!-- Importação de CSS personalizado específico para a página de ajuda -->
+    <link rel="stylesheet" href="../../ajuda/ajuda.css">
+
+</head>
+<body>
+    <!-- Cabeçalho da página -->
+    <header>
+        <!-- Seção do logo da empresa, que leva à página inicial ao ser clicado -->
+        <div class="logo">
+            <a href="../paginainicial/paginaInicial.html">
+                <img src="../../IMG/LOGOS/LOGO_WELLDENTYS_SEM_SAUDE_ESTETICA_JPEG copy.png" alt="Logo da Welldentys" class="logo-welldentys">
+            </a>
+        </div>
+        
+        <!-- Menu de navegação -->
+        <nav class="menu">
+            <!-- Links de navegação para outras páginas -->
+            <a href="../paginainicial/paginainicial.html">Página Inicial</a>
+            <a href="../Paginainicial2/checklogin.html">Consultas</a>
+            <a href="../ajuda/ajuda.html" class="select">Ajuda</a> <!-- A classe 'select' destaca a página atual -->
+            <a href="../perfil/perfil.html">
+                <!-- Ícone de perfil do Bootstrap -->
+                <i class="bi bi-person-circle"></i>
+            </a>
+        </nav>
+    </header>
+
+    <!-- Título da página -->
+    <div class="title">
+        <h1>Ajuda</h1>
+    </div>
+
+    <!-- Seção com os serviços oferecidos -->
+    <section class="services">
+        <!-- Container para os itens dos serviços -->
+        <div class="service-items">
+            <!-- Item do serviço de Branqueamento -->
+            <div class="service-item">
+                <img src="../../IMG/FOTOS/branqueamento.jpg" alt="Branqueamento">
+                <h3>Branqueamento</h3>
+                <!-- Botão que redireciona para a página de Branqueamento -->
+                <button onclick="window.location.href='./branqueamento/branqueamento.html'">Ver</button>
+            </div>
+            <!-- Item do serviço de Ortodontia -->
+            <div class="service-item">
+                <img src="../../IMG/FOTOS/FotoAparelho.png" alt="Ortodontia">
+                <h3>Ortodontia</h3>
+                <!-- Botão que redireciona para a página de Ortodontia -->
+                <button onclick="window.location.href='./Ortodontia/ortodontia.html'">Ver</button>
+            </div>
+            <!-- Item do serviço de Dentisteria -->
+            <div class="service-item">
+                <img src="../../IMG/FOTOS/limpeza.jpg" alt="Dentisteria">
+                <h3>Dentisteria</h3>
+                <!-- Botão que redireciona para a página de Dentisteria -->
+                <button onclick="window.location.href='./dentisteria/dentisteria.html'">Ver</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Segunda seção com mais serviços oferecidos -->
+    <section class="services">
+        <!-- Container para os itens dos serviços -->
+        <div class="service-items">
+            <!-- Item do serviço de Implantologia -->
+            <div class="service-item">
+                <img src="../../IMG/FOTOS/Implantologia.jpeg" alt="Implantologia">
+                <h3>Implantologia</h3>
+                <!-- Botão que redireciona para a página de Implantologia -->
+                <button onclick="window.location.href='./Implantologia/implantologia.html'">Ver</button>
+            </div>
+            <!-- Item do serviço de Endodontria -->
+            <div class="service-item">
+                <img src="../../IMG/FOTOS/endodontria.jpeg" alt="Endodontria">
+                <h3>Endodontria</h3>
+                <!-- Botão que redireciona para a página de Endodontria -->
+                <button onclick="window.location.href='./endodontria/endodontria.html'">Ver</button>
+            </div>
+            <!-- Item do serviço de Periodontologia -->
+            <div class="service-item">
+                <img src="../../IMG/FOTOS/periodontologia.jpg" alt="Periodontologia">
+                <h3>Periodontologia</h3>
+                <!-- Botão que redireciona para a página de Periodontologia -->
+                <button onclick="window.location.href='./periodontologia/periodontologia.html'">Ver</button>
+            </div>
+        </div>
+    </section>  
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <!-- Define o conjunto de caracteres e a responsividade da página -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Médica</title>
+
+    <!-- Link para a biblioteca Bootstrap para estilização da página -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link para os ícones do Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Inclusão do Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <!-- Link para o arquivo CSS do cabeçalho -->
+    <link rel="stylesheet" href="../../HEADER/header.css">
+    <!-- Link para o arquivo CSS do corpo -->
+    <link rel="stylesheet" href="corpo.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Cabeçalho da página -->
+        <header>
+            <div class="logo">
+                <!-- Logo da Welldentys com link para a página inicial -->
+                <a href="../Paginainicial/paginainicial.html">
+                    <img src="../../IMG/LOGOS/LOGO_WELLDENTYS_SEM_SAUDE_ESTETICA_JPEG copy.png" alt="Logo da " class="logo-welldentys">
+                </a>
+            </div>
+            <nav class="menu">
+                <nav class="menu-primario">
+                    <!-- Links do menu para diferentes seções -->
+                    <a href="../Paginainicial/paginainicial.html">Página Inicial</a>
+                    <a href="../consultas/consultas.html">Consultas</a>
+                    <a href="../Perfil/perfil.html">
+                        <!-- Ícone do perfil do usuário -->
+                        <i class="bi bi-person-circle"></i>
+                    </a>
+                </nav>
+            </nav>
+        </header>
+        
+        <!-- Se o nome do médico estiver disponível, exibe a agenda -->
+        <div v-if="doctorName" class="app">
+            <div class="header">
+                <div>
+                    <!-- Campo de entrada para escolher a data da consulta -->
+                    <input type="date" id="consulta-date" v-model="selectedDate">
+                    <!-- Botão para procurar consultas na data selecionada -->
+                    <button v-if="selectedDate" class="btn btn-primary" @click="fetchAppointments">Procurar</button>
+                </div>
+                <!-- Exibe o nome do médico -->
+                <div class="nomedomedico">{{ doctorName }}</div>
+            </div>
+
+            <!-- Tabela que exibe as consultas agendadas -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Hora</th>
+                        <th>Paciente</th>
+                        <th>Convenção</th>
+                        <th>Telefone</th>
+                        <th>Email</th>
+                        <th>Médico</th>
+                        <th>Tipo de Consulta</th>
+                        <th>Desmarcar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Se houver consultas agendadas, exibe as informações -->
+                    <tr v-if="appointments.length" v-for="(appointment, index) in appointments" :key="index">
+                        <td>{{ appointment.time }}</td>
+                        <td>{{ appointment.patient }}</td>
+                        <td>{{ appointment.insurance }}</td>
+                        <td>{{ appointment.phone }}</td>
+                        <td>{{ appointment.email }}</td>
+                        <td>{{ appointment.doctor }}</td>
+                        <td>{{ appointment.typeOfConsultation }}</td>
+                        <td>
+                            <!-- Botão para desmarcar uma consulta -->
+                            <button class="btn btn-danger" @click="apagarConsulta(appointment)">Desmarcar</button>
+                        </td>
+                    </tr>
+                    <!-- Caso o usuário não tenha selecionado uma data -->
+                    <tr v-if="!selectedDate">
+                        <td colspan="8" class="text-center">Selecione uma data</td>
+                    </tr>
+                    <!-- Caso não haja consultas agendadas para a data selecionada -->
+                    <tr v-if="appointments.length === 0 && selectedDate">
+                        <td colspan="8" class="text-center">Ainda não há consultas marcadas para esta data.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Caso o nome do médico não esteja disponível (usuário não logado) -->
+        <div v-else>
+            <p>Por favor, faça login primeiro.</p>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                doctorName: '',  // Nome do médico, que é recuperado do localStorage
+                appointments: [],  // Lista de consultas agendadas
+                selectedDate: '',  // Data selecionada pelo médico
+                showManualForm: false,  // Variável para controlar o formulário de marcação manual
+                manualRequest: {  // Dados do formulário de marcação manual
+                    nome_cliente: '',
+                    tipo_consulta: '',
+                    email: '',
+                    telefone: '',
+                    seguro: '',
+                    data: '',
+                    hora: ''
+                },
+                selectedDoctor: null,  // Médico selecionado
+                doctors: [ /* Lista de médicos, você pode preencher com dados reais */ ]
+            },
+            created() {
+                // Recupera o nome do médico do localStorage
+                this.doctorName = localStorage.getItem('userName');
+                // Se o nome do médico não estiver disponível, redireciona para a página de login
+                if (!this.doctorName) {
+                    window.location.href = '../../login/login.html';
+                }
+            },
+            methods: {
+                // Método para buscar a lista de médicos
+                fetchDoctors() {
+                    fetch('http://localhost:3001/medicos')
+                        .then(response => response.json())
+                        .then(data => {
+                            this.doctors = data.map(doctor => ({
+                                id: doctor.id,
+                                nome: doctor.nome
+                            }));
+                        });
+                },
+                
+                // Método para buscar as consultas agendadas de um médico para uma data específica
+                fetchAppointments() {
+                    if (!this.selectedDate) {
+                        alert('Por favor, selecione uma data.');
+                        return;
+                    }
+                    const url = `http://localhost:3001/medicos/horarios?nome_medico=${this.doctorName}&data=${this.selectedDate}`;
+                    fetch(url)
+                        .then(response => {
+                            if (!response.ok) throw new Error(`Erro ${response.status}: ${response.statusText}`);
+                            return response.json();
+                        })
+                        .then(data => {
+                            // Atualiza a lista de consultas com os dados recebidos do backend
+                            this.appointments = data.map(app => ({
+                                id: app.id,
+                                time: app.time,
+                                patient: app.patient,
+                                insurance: app.insurance,
+                                phone: app.phone,
+                                email: app.email,
+                                doctor: app.doctorName,
+                                typeOfConsultation: app.typeOfConsultation
+                            }));
+                        })
+                        .catch(error => {
+                            console.error('Erro ao carregar horários:', error);
+                            alert('Erro ao carregar horários. Tente novamente mais tarde.');
+                        });
+                },
+                
+                // Método para apagar uma consulta
+                apagarConsulta(appointment) {
+                    const url = `http://localhost:3001/apagar/consulta`;
+                    const requestBody = {
+                        nome_paciente: appointment.patient,
+                        data_consulta: this.selectedDate,
+                        hora_consulta: appointment.time
+                    };
+                    fetch(url, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(requestBody)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Atualiza a lista de consultas removendo a consulta apagada
+                            this.appointments = this.appointments.filter(app => app.id !== appointment.id);
+                            alert('Consulta desmarcada com sucesso!');
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erro ao apagar consulta:', error);
+                        alert('Erro ao desmarcar a consulta. Tente novamente mais tarde.');
+                    });
+                },
+            }
+        });
+    </script>
+</body>
+</html>
+

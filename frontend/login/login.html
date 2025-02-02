@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <!-- Define o conjunto de caracteres e a responsividade da página -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Link para o arquivo de estilos CSS -->
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <!-- Cabeçalho da página -->
+    <header>
+        <div class="logo">
+            <!-- Logo da Welldentys com link para a página inicial -->
+            <a href="../paginainicial/paginaInicial.html"  >
+                <img src="../IMG/LOGOS/logo_lab.png" alt="Logo da Welldentys" class="logo-welldentys">
+            </a>
+        </div>
+    </header>
+    
+    <!-- Container principal da aplicação (Vue.js) -->
+    <div id="app" class="countainer">
+        <div class="formularios" id="formulario">
+            <div class="img-logo">
+                <!-- Logo adicional com link para a página inicial -->
+                <a href="../index.html">
+                    <img src="../../IMG/LOGOS/folha-logo.png" alt="" class="folha-logo">  
+                </a>
+            </div>
+            <div class="titulo">
+                <!-- Título da página -->
+                <h1>Login</h1>
+            </div>
+            <div class="formulario">
+                <div class="form">
+                    <!-- Mensagem de erro que será exibida se houver algum erro durante o login -->
+                    <p v-if="errorMessage" style="color: red; text-align: center;">{{ errorMessage }}</p>
+                    
+                    <!-- Campo de entrada para o email -->
+                    <p>Insira o seu email</p>
+                    <input type="email" v-model="email" placeholder="Email" required class="input">
+                    
+                    <!-- Campo de entrada para a senha -->
+                    <p>Insira sua palavra-passe</p>
+                    <input type="password" v-model="password" placeholder="Password" required class="input">
+                    
+                    <!-- Botão para submeter o formulário de login -->
+                    <div class="btn-login">
+                        <button class="login-btn" @click="handleLogin">Continuar</button>
+                    </div>
+                    
+                    <!-- Link para a página de cadastro -->
+                    <div class="ainda-nao-tem-conta">
+                        <a href="../signup/signup.html">Ainda não tenho conta</a>
+                    </div>
+                </div>    
+            </div>
+        </div>
+    </div>
+
+    <!-- Inclusão do Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                email: '',         // Armazena o email do usuário
+                password: '',      // Armazena a senha do usuário
+                errorMessage: ''   // Armazena mensagens de erro, se houver
+            },
+            methods: {
+                // Método para lidar com o login
+                async handleLogin() {
+                    this.errorMessage = '';  // Limpa mensagens de erro anteriores
+        
+                    // Validação simples no frontend para verificar se os campos não estão vazios
+                    if (!this.email || !this.password) {
+                        this.errorMessage = 'Por favor, preencha todos os campos.'; // Exibe mensagem de erro
+                        return;
+                    }
+        
+                    try {
+                        // Envia a solicitação de login para o backend
+                        const response = await fetch('http://localhost:3001/login', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ email: this.email, password: this.password }), // Envia o email e senha no corpo da requisição
+                        });
+        
+                        // Recebe a resposta do servidor
+                        const result = await response.json();
+        
+                        // Se a resposta for bem-sucedida e o login for válido
+                        if (response.ok && result.success) {
+                            // Armazena os dados do usuário no localStorage
+                            localStorage.setItem('userName', result.nome);   // Armazena o nome do usuário
+                            localStorage.setItem('email', result.email);     // Armazena o email
+                            localStorage.setItem('telefone', result.telefone);  // Armazena o telefone
+        
+                            // Redireciona o usuário dependendo do seu tipo de perfil
+                            if (result.role === 'medico') {
+                                window.location.href = `../medico/Paginainicial/paginainicial.html?nome=${encodeURIComponent(result.nome)}`;
+                            } else if (result.role === 'user') {
+                                window.location.href = `../user/paginainicial/paginainicial.html?nome=${encodeURIComponent(result.nome)}`;
+                            } else if (result.role === 'assistente') {
+                                window.location.href = `../assistentes/Paginainicial2/checklogin.html?nome=${encodeURIComponent(result.nome)}`;
+                            } else {
+                                this.errorMessage = 'Tipo de utilizador não reconhecido.'; // Exibe mensagem de erro se o tipo de usuário for inválido
+                            }
+                        } else {
+                            // Se as credenciais forem inválidas ou houver erro, exibe mensagem de erro
+                            this.errorMessage = result.message || 'Credenciais inválidas.';
+                        }
+                    } catch (error) {
+                        // Se houver erro ao conectar ao servidor, exibe mensagem de erro
+                        console.error('Erro ao conectar ao servidor:', error);
+                        this.errorMessage = 'Erro ao conectar ao servidor. Verifica a tua ligação.';
+                    }
+                }
+            }
+        });
+    </script>
+    
+</body>
+</html>
+
+

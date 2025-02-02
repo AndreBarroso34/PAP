@@ -1,0 +1,282 @@
+/* Importando a fonte Poppins do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Estilo para o corpo da página */
+body {
+    margin: 0; /* Remove a margem padrão do corpo */
+    font-family: 'Poppins'; /* Define a fonte do corpo como Poppins */
+}
+
+/* Estilo para links de navegação */
+nav.menu a {
+    color: white; /* Cor do texto dos links */
+    text-decoration: none; /* Remove o sublinhado padrão dos links */
+    font-size: 16px; /* Tamanho da fonte */
+}
+
+/* Estilo para o header */
+header {
+    background-color: #000; /* Cor de fundo do header */
+}
+
+/* Estilo para o logo no header */
+header .logo {
+    margin-left: 30px; /* Adiciona um espaço à esquerda do logo */
+}
+
+/* Estilo para o menu de navegação */
+nav.menu {
+    display: flex; /* Exibe os itens em linha usando flexbox */
+    gap: 20px; /* Espaçamento de 20px entre os links */
+}
+
+/* Estilo para os botões secundários */
+.btn-secondary {
+    background-color: #8BC34A; /* Cor de fundo do botão */
+    color: white; /* Cor do texto do botão */
+    border: none; /* Remove a borda padrão */
+    padding: 8px 15px; /* Espaçamento interno do botão */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Aparece o cursor de "pointer" ao passar o mouse */
+}
+
+/* Efeito de hover para o botão secundário */
+.btn-secondary:hover {
+    background-color: #7CAF3D; /* Cor de fundo quando o botão é hoverizado */
+}
+
+/* Estilo para imagens na seção de imagens */
+.images-section img {
+    width: 100%; /* Imagem ocupa toda a largura do contêiner */
+    height: auto; /* Mantém a proporção da imagem */
+    display: block; /* Remove o espaçamento abaixo da imagem */
+}
+
+/* Estilo para a seção de frase */
+.frase {
+    display: flex; /* Usa flexbox para o layout */
+    flex-direction: column; /* Organiza os itens verticalmente */
+    align-items: center; /* Alinha os itens ao centro */
+    justify-content: center; /* Centraliza os itens na seção */
+    text-align: center; /* Alinha o texto ao centro */
+    padding: 50px 20px; /* Adiciona padding */
+    background-color: #f9f9f9; /* Cor de fundo clara */
+    margin-top: 100px; /* Espaço no topo */
+}
+
+/* Estilo para o título na seção de frase */
+.frase h1 {
+    font-size: 24px; /* Tamanho do título */
+    color: #333; /* Cor escura para o título */
+    margin-bottom: 20px; /* Espaço abaixo do título */
+}
+
+/* Estilo para o botão primário na seção de frase */
+.frase .btn-primary {
+    background-color: #4CAF50; /* Cor de fundo verde */
+    color: white; /* Cor do texto branca */
+    border: none; /* Remove a borda */
+    padding: 10px 20px; /* Espaçamento interno */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 16px; /* Tamanho da fonte */
+    cursor: pointer; /* Cursor de pointer ao passar o mouse */
+}
+
+/* Efeito de hover para o botão primário */
+.frase .btn-primary:hover {
+    background-color: #45A049; /* Cor de fundo quando hoverizado */
+}
+
+/* Estilo para a seção de serviços */
+.services {
+    background-color: #2D4A2E; /* Cor de fundo verde escuro */
+    padding: 70px 20px; /* Adiciona padding */
+    color: white; /* Cor do texto branca */
+    text-align: center; /* Alinha o texto ao centro */
+    margin-top: 100px; /* Espaço acima */
+}
+
+/* Estilo para os itens de serviço na seção */
+.services .service-items {
+    display: flex; /* Exibe os itens em linha */
+    justify-content: center; /* Alinha os itens ao centro */
+    gap: 20%; /* Espaçamento de 20% entre os itens */
+}
+
+/* Estilo para cada item de serviço */
+.services .service-item {
+    background-color: #ffffff; /* Cor de fundo branca */
+    border-radius: 10px; /* Bordas arredondadas */
+    padding: 20px; /* Adiciona padding */
+    text-align: center; /* Alinha o texto ao centro */
+    color: black; /* Cor do texto preta */
+    width: 200px; /* Largura fixa para os itens */
+}
+
+/* Estilo para as imagens nos itens de serviço */
+.services .service-item img {
+    width: 100%; /* A imagem ocupa toda a largura do contêiner */
+    border-radius: 10px; /* Bordas arredondadas para a imagem */
+}
+
+/* Estilo para o título dentro de cada item de serviço */
+.services .service-item h3 {
+    font-size: 18px; /* Tamanho do título */
+    margin: 15px 0; /* Espaço acima e abaixo do título */
+}
+
+/* Estilo para o botão dentro dos itens de serviço */
+.services .service-item button {
+    background-color: #4CAF50; /* Cor de fundo verde */
+    color: white; /* Cor do texto branca */
+    border: none; /* Remove a borda */
+    padding: 10px 20px; /* Adiciona padding */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de pointer */
+}
+
+/* Efeito de hover para o botão nos itens de serviço */
+.services .service-item button:hover {
+    background-color: #45A049; /* Cor de fundo quando hoverizado */
+}
+
+/* Estilo para o link "Ver mais" na seção de serviços */
+.services .see-more {
+    margin-top: 20px; /* Espaço no topo */
+    display: flex; /* Exibe em linha */
+    align-items: center; /* Alinha verticalmente */
+    justify-content: center; /* Centraliza */
+    gap: 5px; /* Espaço entre o ícone e o texto */
+    cursor: pointer; /* Cursor de pointer */
+    color: white; /* Cor branca */
+}
+
+/* Estilo para o ícone dentro de "Ver mais" */
+.services .see-more i {
+    font-size: 18px; /* Tamanho do ícone */
+}
+
+/* Estilo para o rodapé */
+footer {
+    background-color: black; /* Cor de fundo preta */
+    color: white; /* Cor do texto branca */
+    font-family: Arial, sans-serif; /* Fonte para o rodapé */
+    padding: 20px 0; /* Padding no rodapé */
+}
+
+/* Estilo principal do rodapé */
+.rodape {
+    display: flex; /* Exibe em linha */
+    align-items: center; /* Alinha verticalmente */
+    justify-content: space-between; /* Espaça o logo e o conteúdo */
+    width: 90%; /* Largura de 90% */
+    margin: 0 auto; /* Centraliza o rodapé */
+}
+
+/* Estilo para o logo no rodapé */
+.logoimg {
+    flex: 0; /* O logo não se expande */
+}
+
+.logoimg img {
+    width: 80px; /* Tamanho do logo */
+    margin-right: 20px; /* Espaço à direita do logo */
+}
+
+/* Estilo para a seção de locais e redes sociais */
+.locais-geral {
+    display: flex; /* Exibe em linha */
+    justify-content: center; /* Centraliza os itens */
+    align-items: center; /* Alinha verticalmente */
+    gap: 40px; /* Espaço entre locais e redes sociais */
+    flex: 1; /* Ocupa o espaço restante */
+}
+
+/* Estilo para a seção de locais (endereço, telefone, email) */
+.locais {
+    text-align: left; /* Alinha o texto à esquerda */
+    display: flex;
+    flex-direction: column; /* Organiza em coluna */
+    justify-content: center; /* Centraliza internamente */
+    padding: 0 10%; /* Adiciona padding nas laterais */
+}
+
+/* Deixa em negrito a primeira linha de cada parágrafo */
+.locais p:first-child,
+.rua p:first-child {
+    font-weight: bold;
+    margin-bottom: 5px; /* Espaço abaixo */
+}
+
+.locais p {
+    margin: 5px 0; /* Espaço entre os parágrafos */
+}
+
+/* Estilo para a seção de redes sociais */
+.redes-sociais {
+    text-align: left; /* Alinha o texto à esquerda */
+    display: flex;
+    flex-direction: column; /* Organiza os itens em coluna */
+    justify-content: center; /* Centraliza internamente */
+    margin: 0 10%; /* Adiciona margem nas laterais */
+}
+
+/* Estilo para cada ícone de rede social */
+.redes-sociais div {
+    margin-bottom: 10px; /* Espaço abaixo de cada item */
+}
+
+.redes-sociais div div {
+    display: flex; /* Exibe os itens em linha */
+    align-items: center; /* Alinha verticalmente */
+    gap: 10px; /* Espaço entre o ícone e o texto */
+}
+
+/* Estilo para os ícones de redes sociais */
+.redes-sociais i {
+    font-size: 18px; /* Tamanho do ícone */
+    color: white; /* Cor branca para os ícones */
+}
+
+/* Estilo para o texto no rodapé */
+footer p {
+    margin-top: 20px; /* Espaço no topo */
+    font-size: 14px; /* Tamanho da fonte */
+    color: #ccc; /* Cor cinza clara */
+    text-align: center; /* Alinha o texto ao centro */
+}
+
+/* Estilo para a linha branca no rodapé */
+.linha-branca {
+    border: none;
+    height: 1px;
+    background-color: white; /* Cor da linha */
+    margin: 0; /* Remove a margem */
+}
+
+/* Estilo para o formulário de email */
+.email {
+    margin-top: 2%; /* Espaço no topo */
+    margin-bottom: 6%; /* Espaço abaixo */
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    /* Empilha os elementos no rodapé */
+    .rodape {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Empilha locais e redes sociais */
+    .locais-geral {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px; /* Espaço entre as seções */
+    }
+
+    .locais, .redes-sociais {
+        margin: 10px 0; /* Adiciona margem entre as seções */
+    }
+}

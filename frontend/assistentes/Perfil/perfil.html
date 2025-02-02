@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+
+    <!-- Link para o CSS -->
+    <link rel="stylesheet" href="./perfil.css">
+    <!-- import css do header -->
+    <link rel="stylesheet" href="../../HEADER/header.css">
+    <!-- import bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <a href="../paginainicial/paginaInicial.html"  >
+                    <img src="../../IMG/LOGOS/LOGO_WELLDENTYS_SEM_SAUDE_ESTETICA_JPEG copy.png" alt="Logo da " class="logo-welldentys">
+                </a>
+            </div>
+            
+            <nav class="menu">
+                <nav class="menu-primario">
+                    <a href="../paginainicial/paginainicial.html">Página Inicial</a>
+                    <a href="../Paginainicial2/checklogin.html">Consultas</a>
+                    <a href="../perfil/perfil.html">
+                        <i class="bi bi-person-circle"></i>
+                    </a>
+                </nav>
+            </nav>
+        </header>
+        <!-- Adicionar o ID 'app' para o Vue funcionar -->
+        <div class="perfil" id="app">
+            <h2>{{ userName }}</h2>
+
+            <div class="change-password">
+                <div class="input-group">
+                    <label for="new-password">Nova palavra-pass:</label>
+                    <input type="password" id="new-password" v-model="newPassword">
+                </div>
+    
+                <div class="input-group">
+                    <label for="confirm-password">Confirmar palavra-pass:</label>
+                    <input type="password" id="confirm-password" v-model="confirmPassword">
+                </div>
+    
+                <button class="btn btn-success" @click="changePassword">Mudar palavra-pass</button>
+            </div>
+
+            <!-- Linha horizontal após o botão -->
+            <hr class="line-separator">
+
+            <div class="logout">
+                <button class="btn btn-primary" @click="logout">Sair</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> <!-- Vue.js -->
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                userName: '',  // Nome do utilizador (recuperado do login)
+                newPassword: '',  // Nova senha
+                confirmPassword: ''  // Confirmação da nova senha
+            },
+            created() {
+                // Recupera o nome do utilizador após login
+                this.userName = localStorage.getItem('userName');
+                
+                if (!this.userName) {
+                    window.location.href = '../../login/login.html';  // Redireciona se não houver nome de utilizador
+                }
+            },
+            methods: {
+                logout() {
+                    // Remove os dados do utilizador do localStorage
+                    localStorage.removeItem('userName');
+                    localStorage.removeItem('email');
+                    localStorage.removeItem('password');
+                    localStorage.removeItem('telefone');
+                    // Redireciona para a página de login
+                    window.location.href = '../../login/login.html';
+                },
+                changePassword() {
+                    // Pega o email do localStorage (supondo que você o tenha salvo lá)
+                    const userEmail = localStorage.getItem('email');  // Use o mesmo nome de chave que você usou durante o login
+                    const newPassword = this.newPassword;
+                    const confirmPassword = this.confirmPassword;
+
+                    // Verifica se os campos de senha e email estão preenchidos
+                    if (!userEmail || !newPassword || !confirmPassword) {
+                        alert('Por favor, forneça email e nova senha.');
+                        return;  // Se algum campo não estiver preenchido, não envia a requisição
+                    }
+
+                    // Verifica se as senhas são iguais
+                    if (newPassword === confirmPassword) {
+                        // Envia a requisição POST para o servidor
+                        fetch('http://localhost:3001/mudarpalavrapassassistentes', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                email: userEmail,  // Pega o email do usuário logado
+                                newPassword: newPassword,
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('Resposta do servidor:', data);
+                            if (data.message) {
+                                alert(data.message);  // Exibe a mensagem do servidor
+
+                                // Limpa os campos de senha após a mudança de senha ser bem-sucedida
+                                this.newPassword = '';
+                                this.confirmPassword = '';
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Erro ao mudar a senha:', error);
+                            alert('Erro ao mudar a senha. Tente novamente.');
+                        });
+                    } else {
+                        alert('As senhas não coincidem.');
+                    }
+                }
+            },
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Médico</title>
+    
+    <!-- Link para o CSS da página -->
+    <link rel="stylesheet" href="./perfil.css">
+    <!-- Link para o CSS do header (padrão para todas as páginas) -->
+    <link rel="stylesheet" href="../../HEADER/header.css">
+    <!-- Importação de ícones do Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Cabeçalho (Header) -->
+        <header>
+            <div class="logo">
+                <!-- Logo da empresa/link para a página inicial -->
+                <a href="../paginainicial/paginaInicial.html">
+                    <img src="../../IMG/LOGOS/LOGO_WELLDENTYS_SEM_SAUDE_ESTETICA_JPEG copy.png" alt="Logo da Welldentys" class="logo-welldentys">
+                </a>
+            </div>
+            
+            <!-- Menu de navegação -->
+            <nav class="menu">
+                <nav class="menu-primario">
+                    <a href="../paginainicial/paginainicial.html">Página Inicial</a>
+                    <a href="../marcarconsulta/checklogin.html">Consultas</a>
+                    <!-- Ícone de perfil -->
+                    <a href="../perfil/perfil.html">
+                        <i class="bi bi-person-circle"></i>
+                    </a>
+                </nav>
+            </nav>
+        </header>
+
+        <!-- Seção de perfil médico -->
+        <div class="perfil" id="app">
+            <!-- Exibe o nome do médico, que será recuperado do localStorage -->
+            <h2>{{ doctorName }}</h2>
+            
+            <!-- Seção para mudar a senha -->
+            <div class="change-password">
+                <!-- Campo para nova senha -->
+                <div class="input-group">
+                    <label for="new-password">Nova palavra-pass:</label>
+                    <input type="password" id="new-password" v-model="newPassword">
+                </div>
+    
+                <!-- Campo para confirmar a nova senha -->
+                <div class="input-group">
+                    <label for="confirm-password">Confirmar palavra-pass:</label>
+                    <input type="password" id="confirm-password" v-model="confirmPassword">
+                </div>
+    
+                <!-- Botão para acionar a função de alteração de senha -->
+                <button class="btn btn-success" @click="changePassword">Mudar palavra-pass</button>
+            </div>
+
+            <!-- Linha separadora entre a mudança de senha e o logout -->
+            <hr class="line-separator">
+            
+            <!-- Botão para o logout -->
+            <div class="logout">
+                <button class="btn btn-primary" @click="logout">Sair</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inclusão do Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> <!-- Vue.js -->
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                doctorName: '',  // Nome do médico (recuperado do login)
+                newPassword: '',  // Nova senha
+                confirmPassword: ''  // Confirmação da nova senha
+            },
+            created() {
+                // Recupera o nome do utilizador após login e atribui a doctorName
+                this.doctorName = localStorage.getItem('userName');
+                
+                // Se o nome do usuário não estiver no localStorage, redireciona para a página de login
+                if (!this.doctorName) {
+                    window.location.href = '../../login/login.html';  // Redireciona se não houver nome de utilizador
+                }
+            },
+            methods: {
+                // Função de logout que remove dados do localStorage e redireciona para login
+                logout() {
+                    // Remove os dados do utilizador do localStorage
+                    localStorage.removeItem('userName');
+                    localStorage.removeItem('email');
+                    localStorage.removeItem('password');
+                    localStorage.removeItem('telefone');
+                    // Redireciona para a página de login
+                    window.location.href = '../../login/login.html';
+                },
+
+                // Função para mudar a senha do usuário
+                changePassword() {
+                    // Pega o email do localStorage (que foi salvo ao fazer login)
+                    const userEmail = localStorage.getItem('email');  
+                    const newPassword = this.newPassword;
+                    const confirmPassword = this.confirmPassword;
+    
+                    // Verifica se os campos de senha e email estão preenchidos
+                    if (!userEmail || !newPassword || !confirmPassword) {
+                        alert('Por favor, forneça email e nova senha.');
+                        return;  // Se algum campo não estiver preenchido, não envia a requisição
+                    }
+    
+                    // Verifica se as senhas são iguais
+                    if (newPassword === confirmPassword) {
+                        // Envia a requisição POST para o servidor
+                        fetch('http://localhost:3001/mudarpalavrapassmedico', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                email: userEmail,  // Pega o email do médico logado
+                                newPassword: newPassword,
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('Resposta do servidor:', data);
+                            if (data.message) {
+                                alert(data.message);  // Exibe a mensagem do servidor
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Erro ao mudar a senha:', error);
+                            alert('Erro ao mudar a senha. Tente novamente.');
+                        });
+                    } else {
+                        alert('As senhas não coincidem.');  // Alerta se as senhas não coincidirem
+                    }
+                }
+            },
+        });
+    </script>    
+</body>
+</html>
+

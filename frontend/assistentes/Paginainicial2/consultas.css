@@ -1,0 +1,63 @@
+/* Import do tipo de letra Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+:root{
+    --cor-btn-verde : #95bb3b;
+    --cor-btn-verde-escuro: rgb(2, 94, 2);
+    --sombra-fundo: 0 10px 20px rgba(0, 0, 0, 0.5); /* Sombra do fundo */
+    --background-color: rgb(26, 26, 26);
+    --cor-texto-branco: rgb(255, 255, 255);
+}
+
+body{
+    background-color: var(--background-color);
+    color: var(--cor-texto-branco);
+    font-family: 'Poppins';
+}
+
+nav.menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.app{
+    padding-left: 3%;
+    padding-right: 3%;
+}
+th,
+td{
+    color: var(--cor-texto-branco);
+}
+
+h4{
+    text-align: center;
+}
+
+
+
+.form-control {
+    background-color: transparent; /* Fundo transparente */
+    color: #ffffff; /* Cor do texto branca */
+    border: 1px solid #ffffff; /* Borda branca */
+    border-radius: 10px; /* Bordas arredondadas */
+    padding: 10px; /* Ajusta o padding para não ser exagerado */
+    font-size: 16px; /* Tamanho da fonte */
+    outline: none; /* Remove o contorno padrão ao focar */
+    text-align: center; /* Centraliza o texto */
+    width: 100%; /* Faz com que o input ocupe toda a largura disponível */
+    transition: all 0.3s ease; /* Animação suave para efeitos */
+}
+  
+.form-control::placeholder {
+    color: #cccccc; /* Cor do placeholder */
+}
+
+
+
+
+
+
+
+.mb-3{
+    padding: 0 20%;
+}

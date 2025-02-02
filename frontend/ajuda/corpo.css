@@ -1,0 +1,39 @@
+/* Import do tipo de letra Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* Definindo variáveis de cores e outras propriedades para facilitar a manutenção e reutilização */
+:root{
+    --cor-btn-verde : #95bb3b; /* Cor verde para botões */
+    --cor-btn-verde-escuro: rgb(2, 94, 2); /* Cor verde mais escura para botões */
+    --sombra-fundo: 0 10px 20px rgba(0, 0, 0, 0.5); /* Sombra aplicada ao fundo */
+    --background-color: rgb(26, 26, 26); /* Cor de fundo escura */
+    --cor-texto-branco: rgb(255, 255, 255); /* Cor branca para o texto */
+}
+
+/* Estilo geral do body */
+body{
+    background-color: var(--background-color); /* Cor de fundo usando a variável */
+    color: var(--cor-texto-branco); /* Cor do texto usando a variável */
+    font-family: 'Poppins'; /* Fonte Poppins para o texto */
+}
+
+/* Estilo para o logo do cabeçalho */
+header .logo {
+    margin-left: 30px; /* Adicionando margem à esquerda do logo */
+}
+
+/* Estilo para o título (h1) */
+.title{
+    text-align: center; /* Alinha o título no centro */
+}
+
+/* Estilo para as seções de texto (p) */
+.texto{
+    padding-left: 5%; /* Espaçamento à esquerda */
+    padding-right: 5%; /* Espaçamento à direita */
+}
+
+/* Estilo para os parágrafos dentro das seções de texto */
+.texto p {
+    padding-left: 5%; /* Espaçamento à esquerda */
+    padding-right: 5%; /* Espaçamento à direita */
+}

@@ -1,0 +1,116 @@
+:root {
+    /* Definindo variáveis de cores e sombra para reutilização no código */
+    --cor-btn-verde: #95bb3b; /* Cor verde para botões */
+    --cor-btn-verde-escuro: rgb(2, 94, 2); /* Cor verde escuro para o estado de hover dos botões */
+    --sombra-fundo: 0 10px 20px rgba(0, 0, 0, 0.5); /* Sombra para o fundo */
+    --background-color: rgb(26, 26, 26); /* Cor de fundo principal */
+    --cor-texto-branco: rgb(255, 255, 255); /* Cor branca para o texto */
+}
+
+/* Definindo o estilo geral do body */
+body {
+    font-family: 'Poppins'; /* Usando a fonte Poppins */
+    background-color: var(--background-color); /* Cor de fundo escura */
+}
+
+/* Estilo para os links no menu de navegação */
+nav.menu a {
+    color: white; /* Cor do texto dos links em branco */
+    text-decoration: none; /* Remove o sublinhado */
+    font-size: 16px; /* Tamanho da fonte */
+}
+
+/* Estilo para as labels */
+label {
+    color: var(--cor-texto-branco); /* Cor branca para as labels */
+}
+
+/* Estilo para o perfil, usando flexbox para centralizar os itens */
+.perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente */
+}
+
+/* Estilo para o título (h2) dentro da seção de perfil */
+.perfil h2 {
+    color: white; /* Cor branca para o título */
+}
+
+/* Estilo para o formulário de alteração de senha */
+.change-password {
+    display: flex;
+    flex-direction: column; /* Organiza os itens na vertical */
+    gap: 10px; /* Espaço entre os elementos */
+    max-width: 350px; /* Limita a largura máxima */
+    margin: 20px 0; /* Margem acima e abaixo */
+    align-items: center; /* Centraliza os itens dentro do contêiner */
+}
+
+/* Estilo para o grupo de entradas de formulário */
+.input-group {
+    display: flex;
+    align-items: center; /* Alinha os itens verticalmente */
+    gap: 57px; /* Espaçamento entre a label e o campo de entrada */
+}
+
+/* Estilo para as labels dentro do grupo de entrada */
+.input-group label {
+    font-weight: bold; /* Deixa a label em negrito */
+    white-space: nowrap; /* Impede que o texto quebre em várias linhas */
+    width: 160px; /* Largura fixa para a label */
+    text-align: right; /* Alinha o texto à direita */
+}
+
+/* Estilo para os campos de entrada dentro do grupo */
+.input-group input {
+    flex: 1; /* Faz o campo de entrada ocupar o restante do espaço */
+    padding: 8px; /* Preenchimento interno */
+    font-size: 16px; /* Tamanho da fonte */
+    border: 1px solid #ccc; /* Borda suave */
+    border-radius: 5px; /* Bordas arredondadas */
+}
+
+/* Estilo para o botão de alteração de senha */
+.change-password button {
+    background-color: var(--cor-btn-verde); /* Cor de fundo verde */
+    color: white; /* Cor do texto branca */
+    padding: 10px 20px; /* Preenchimento interno */
+    border: none; /* Sem borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de ponteiro para indicar interatividade */
+    font-size: 16px; /* Tamanho da fonte */
+    width: auto; /* Ajusta o tamanho ao conteúdo */
+    text-align: center; /* Alinha o texto no centro */
+}
+
+/* Estilo para o efeito de hover no botão de alteração de senha */
+.change-password button:hover {
+    background-color: var(--cor-btn-verde-escuro); /* Cor de fundo mais escura ao passar o mouse */
+}
+
+/* Estilo para a linha separadora (divider) */
+.line-separator {
+    border: 0; /* Remove a borda */
+    border-top: 1px solid #ccc; /* Adiciona uma linha de separação */
+    width: 25%; /* Largura da linha separadora */
+}
+
+/* Estilo para o botão de logout */
+.logout button {
+    background-color: var(--cor-btn-verde); /* Cor de fundo verde */
+    color: white; /* Cor do texto branca */
+    padding: 10px 20px; /* Preenchimento interno */
+    border: none; /* Sem borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de ponteiro */
+    font-size: 16px; /* Tamanho da fonte */
+    width: auto; /* Ajusta o tamanho ao conteúdo */
+    text-align: center; /* Alinha o texto no centro */
+}
+
+/* Estilo para o efeito de hover no botão de logout */
+.logout button:hover {
+    background-color: var(--cor-btn-verde-escuro); /* Cor de fundo mais escura ao passar o mouse */
+}

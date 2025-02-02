@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Definição do charset da página (UTF-8 para suportar caracteres especiais) -->
+    <meta charset="UTF-8">
+    <!-- Definição da viewport para dispositivos móveis (tamanho adaptável à tela) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
+    
+    <!-- Link para o CSS do header (o arquivo de estilos do cabeçalho) -->
+    <link rel="stylesheet" href="../HEADER/header.css">
+    
+    <!-- Link para os ícones do Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    
+    <!-- Link para o CSS específico da página inicial -->
+    <link rel="stylesheet" href="paginainicial.css">
+</head>
+<body>
+    <div class="countainer"> <!-- Contêiner principal da página -->
+        
+        <!-- Cabeçalho com logo e navegação -->
+        <header>
+            <div class="logo">
+                <!-- Imagem do logo da empresa -->
+                <img src="../IMG/LOGOS/logo_lab.png" alt="Logo">
+            </div>
+            
+            <!-- Menu de navegação com links para as diferentes páginas -->
+            <nav class="menu">
+                <!-- Link para a página inicial, que está selecionada -->
+                <a href="#" class="select">Página Inicial</a>
+                
+                <!-- Link para a página de ajuda -->
+                <a href="../ajuda/ajuda.html">Ajuda</a>
+                
+                <!-- Botões para Login e Sign Up, redirecionando para as respectivas páginas -->
+                <button class="btn-secondary" onclick="window.location.href='../login/login.html'">Login</button>
+                <button class="btn-secondary" onclick="window.location.href='../signup/signup.html'">Sign Up</button>
+            </nav>
+        </header>
+    
+        <!-- Seção de imagens, com uma foto principal -->
+        <div class="images-section">
+            <!-- Imagem principal da página inicial -->
+            <img src="../IMG/FOTOS/fotoPI.png" alt="Família feliz">
+        </div>
+    
+        <!-- Seção com uma frase principal -->
+        <section class="frase">
+            <h1>Cuidar do seu sorriso é investir no seu bem-estar</h1>
+            <!-- Botão que redireciona para a página de login para marcar uma consulta -->
+            <button class="btn-primary" onclick="window.location.href='../login/login.html'">Marcar consulta</button>
+        </section>
+    
+        <!-- Seção de serviços oferecidos -->
+        <section class="services">
+            <div class="service-items">
+                <!-- Item de serviço para Branqueamento -->
+                <div class="service-item">
+                    <img src="../IMG/FOTOS/branqueamento.jpg" alt="Branqueamento">
+                    <h3>Branqueamento</h3>
+                    <!-- Botão que redireciona para a página de ajuda sobre Branqueamento -->
+                    <button  onclick="window.location.href='../ajuda/branqueamento/branqueamento.html'">Ver</button>
+                </div>
+                
+                <!-- Item de serviço para Ortodontia -->
+                <div class="service-item">
+                    <img src="../IMG/FOTOS/FotoAparelho.png" alt="Aparelho">
+                    <h3>Ortodontia</h3>
+                    <!-- Botão que redireciona para a página de ajuda sobre Ortodontia -->
+                    <button onclick="window.location.href='../ajuda/Ortodontia/ortodontia.html'">Ver</button>
+                </div>
+                
+                <!-- Item de serviço para Implantologia -->
+                <div class="service-item">
+                    <img src="../IMG/FOTOS/Implantologia.jpeg" alt="Implantologia">
+                    <h3>Implantologia</h3>
+                    <!-- Botão que redireciona para a página de ajuda sobre Implantologia -->
+                    <button onclick="window.location.href='../ajuda/Implantologia/implantologia.html'">Ver</button>
+                </div>
+            </div>
+            
+            <!-- Link para ver mais serviços -->
+            <div class="see-more">
+                <a href="../ajuda/ajuda.html">Ver mais</a>
+                <i class="bi bi-arrow-right"></i> <!-- Ícone de seta à direita -->
+            </div>
+        </section>
+    
+        <!-- Rodapé da página -->
+        <footer>
+            <div class="rodape">
+                <!-- Logo da empresa no rodapé -->
+                <div class="logoimg">
+                    <img src="../IMG/LOGOS/folha-logo.png" alt="">
+                </div>
+                
+                <!-- Informações de contato -->
+                <div class="locais-geral">
+                    <div class="locais">
+                        <!-- Informações de email -->
+                        <div class="email">
+                            <p>Email :</p>
+                            <p>welldentysclinica@gmail.com</p>
+                        </div>
+                        <!-- Informações de telefone -->
+                        <div class="telefone">
+                            <p>Telefone :</p>
+                            <p>+351 255 870 252</p>
+                        </div>
+                    </div>
+                    
+                    <div class="rua">
+                        <!-- Informações de endereço -->
+                        <div class="endereco">
+                            <p>Endereço :</p>
+                            <p>R. do Comércio 87, 4590-345 Freamunde</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Links para as redes sociais -->
+                    <div class="redes-sociais">
+                        <div class="instagram">
+                            <div class="insta">
+                                <a href="https://www.instagram.com/welldentys/" target="_blank">
+                                    <!-- Ícone de Instagram -->
+                                    <i class="bi bi-instagram"></i>
+                                </a>
+                                <p>@welldentys</p>
+                            </div>
+                        </div>
+                        
+                        <div class="facebook">
+                            <div class="face">
+                                <a href="https://www.facebook.com/Welldentys?locale=pt_PT" target="_blank">
+                                    <!-- Ícone de Facebook -->
+                                    <i class="bi bi-facebook"></i>
+                                </a>
+                                <p> @welldentys</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Linha de separação no rodapé -->
+            <hr class="linha-branca">
+            
+            <!-- Copyright -->
+            <p>&copy; 2025 Welldentys. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+</body>
+</html>

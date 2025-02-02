@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <!-- Definição do charset para UTF-8 (permitindo caracteres especiais como acentos) -->
+    <meta charset="UTF-8">
+    <!-- Responsividade, para que a página se ajuste bem em dispositivos móveis -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título da página -->
+    <title>Marcar consulta</title>
+    
+    <!-- Importação do Bootstrap para o design responsivo e componentes prontos -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Importação do Vue.js para manipulação dinâmica da interface -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    
+    <!-- Importação do CSS para o calendário -->
+    <link rel="stylesheet" href="calendario.css">
+    <!-- Importação dos ícones do Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Importação de um CSS customizado para o header -->
+    <link rel="stylesheet" href="../../HEADER/header.css">
+    <!-- Importação do CSS para o corpo da página -->
+    <link rel="stylesheet" href="corpo.css">
+</head>
+<body>
+    <!-- Container principal da página -->
+    <div class="countainer">
+        <!-- Cabeçalho (Header) da página -->
+        <header>
+            <div class="logo">
+                <!-- Logo clicável que redireciona para a página inicial -->
+                <a href="../paginainicial/paginaInicial.html">
+                    <img src="../../IMG/LOGOS/LOGO_WELLDENTYS_SEM_SAUDE_ESTETICA_JPEG copy.png" alt="Logo da " class="logo-welldentys">
+                </a>
+            </div>
+            
+            <nav class="menu">
+                <nav class="menu-primario">
+                    <!-- Links de navegação para outras páginas -->
+                    <a href="../paginainicial/paginainicial.html">Página Inicial</a>
+                    <a href="#" class="select">Consultas</a>
+                    <a href="../ajuda/ajuda.html">Ajuda</a>
+                    <a href="../perfil/perfil.html">
+                        <i class="bi bi-person-circle"></i>
+                    </a>
+                </nav>
+            </nav>
+        </header>
+        
+        <!-- Corpo principal da página onde o Vue.js é utilizado -->
+        <div class="container mt-5" id="app">
+            <!-- Seção de seleção do ano -->
+            <div class="mb-3">
+                <label for="year-select" class="form-label">Selecione o Ano</label>
+                <select id="year-select" class="form-control" v-model="selectedYear" @change="populateDays">
+                    <!-- Loop para preencher as opções de ano dinamicamente -->
+                    <option v-for="year in yearOptions" :key="year" :value="year">{{ year }}</option>
+                </select>
+            </div>
+    
+            <!-- Botão para mostrar/ocultar o calendário -->
+            <div>
+                <button class="btn btn-primary mb-3" @click="showCalendar = !showCalendar">
+                    {{ showCalendar ? 'Esconder Calendário' : 'Mostrar Calendário' }}
+                </button>
+            </div>
+    
+            <!-- Seção de input para selecionar o dia -->
+            <div v-if="!showCalendar" class="input-container">
+                <input type="text" class="form-control" :value="selectedDay || 'Selecione um dia'" readonly>
+            </div>
+    
+            <!-- Exibição do calendário -->
+            <div v-if="showCalendar">
+                <!-- Navegação de meses -->
+                <div class="month-nav">
+                    <button class="btn btn-secondary" @click="previousMonth">&#60;</button>
+    
+                    <select v-model="selectedMonth" @change="populateDays">
+                        <option v-for="(month, index) in months" :key="index" :value="index + 1">
+                            {{ month }}
+                        </option>
+                    </select>
+    
+                    <button class="btn btn-secondary" @click="nextMonth">&#62;</button>
+                </div>
+    
+                <!-- Exibição dos dias da semana -->
+                <div class="weekdays">
+                    <div>S</div>
+                    <div>T</div>
+                    <div>Q</div>
+                    <div>Q</div>
+                    <div>S</div>
+                    <div>S</div>
+                    <div>D</div>
+                </div>
+    
+                <!-- Exibição dos dias do mês -->
+                <div class="calendar">
+                    <!-- Loop para exibir os dias do mês -->
+                    <div v-for="(day, index) in daysInMonth" :key="index"
+                        :class="['day', { selected: selectedDay === day.date, disabled: day.isDisabled }]"
+                        @click="!day.isDisabled && selectDay(day)">
+                        {{ day.day }}
+                    </div>
+                </div>
+    
+                <!-- Seção de exibição do dia selecionado -->
+                <div class="input-container mt-3">
+                    <input type="text" class="form-control" :value="selectedDay || 'Selecione um dia'" readonly>
+                </div>
+    
+                <!-- Seção de seleção de horário (Manhã e Tarde) -->
+                <div v-if="selectedDay" class="time-section">
+                    <div class="section-title">Manhã</div>
+                    <div class="time-buttons">
+                        <!-- Botões de horários da manhã -->
+                        <button v-for="time in customMorningTimes" :key="time" class="btn btn-secondary" 
+                            :class="{ active: selectedTime === time, disabled: occupiedTimes.includes(time) }" 
+                            @click="selectTime(time)" :disabled="occupiedTimes.includes(time)">
+                            {{ time }}
+                        </button>
+                    </div>
+    
+                    <div class="section-title">Tarde</div>
+                    <div class="time-buttons">
+                        <!-- Botões de horários da tarde -->
+                        <button v-for="time in customAfternoonTimes" :key="time" class="btn btn-secondary" 
+                            :class="{ active: selectedTime === time, disabled: occupiedTimes.includes(time) }" 
+                            @click="selectTime(time)" :disabled="occupiedTimes.includes(time)">
+                            {{ time }}
+                        </button>
+                    </div>
+                </div>
+    
+                <!-- Botão para confirmar a consulta -->
+                <div v-if="selectedDay && selectedTime" class="mt-3 text-center">
+                    <button class="btn btn-success" @click="confirmAppointment">
+                        Pedir Consulta
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Bloco de scripts com a configuração do Vue.js -->
+    <script>
+        new Vue({
+            el: '#app', // Define a área onde o Vue.js vai agir (elemento com id "app")
+            data: {
+                showCalendar: false, // Controle de visibilidade do calendário
+                selectedDay: '', // Dia selecionado
+                selectedTime: '', // Horário selecionado
+                selectedMonth: new Date().getMonth() + 1, // Mês selecionado (inicia com o mês atual)
+                selectedYear: new Date().getFullYear(), // Ano selecionado (inicia com o ano atual)
+                yearOptions: [], // Opções de anos para o dropdown
+                months: [ /* Lista de meses do ano */],
+                daysInMonth: [], // Dias no mês selecionado
+                customMorningTimes: [], // Horários personalizados para a manhã
+                customAfternoonTimes: [], // Horários personalizados para a tarde
+                occupiedTimes: [], // Horários ocupados para o dia selecionado
+                email: '', // Email do usuário
+                telefone: '', // Telefone do usuário
+                seguro: '' // Seguro do usuário
+            },
+            created() {
+                // Executa quando o componente é criado. Recupera dados do localStorage
+                this.email = localStorage.getItem('email');
+                this.telefone = localStorage.getItem('telefone');
+                this.seguro = localStorage.getItem('insurance'); // Pode ser um array, então converte para string
+                if (Array.isArray(this.seguro)) {
+                    this.seguro = this.seguro.join(', ');
+                }
+                
+                // Redireciona para o login caso o email não exista
+                if (!this.email) {
+                    window.location.href = '../../login/login.html';  
+                }
+                
+                this.populateYears();
+                this.populateDays();
+                this.generateTimeSlots();
+                this.checkOccupiedTimes(); // Verifica os horários ocupados ao inicializar
+            },
+            methods: {
+                selectDay(day) {
+                    this.selectedDay = day.date;
+                    this.selectedTime = ''; // Reset time selection on new day
+                    this.checkOccupiedTimes(); // Verifica os horários ocupados para o novo dia
+                },
+                selectTime(time) {
+                    this.selectedTime = time;
+                },
+                // Função para confirmar a consulta e enviar os dados ao servidor
+                async confirmAppointment() {
+                    const userName = localStorage.getItem('userName') || 'Desconhecido';
+                    const typeOfConsultation = localStorage.getItem('typeOfConsultation') || 'Não especificado';
+                    
+                    // Remove o "H" do valor da hora
+                    const horaConsulta = this.selectedTime.replace('H', '');
+            
+                    const dataToSend = {
+                        nome_paciente: userName,
+                        tipo_consulta: typeOfConsultation,
+                        data_consulta: this.selectedDay,
+                        hora_consulta: horaConsulta, // Hora sem o "H"
+                        email: this.email,  // Dados do email
+                        telefone: this.telefone,  // Dados do telefone
+                        seguro: this.seguro  // Dados do seguro
+                    };
+            
+                    console.log('Enviando dados para o servidor:', dataToSend); // Verifique se os dados estão corretos
+            
+                    try {
+                        const response = await fetch('http://localhost:3001/pedidos', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(dataToSend)
+                        });
+            
+                        if (response.ok) {
+                            alert('Pedido de consulta enviado');
+                        } else {
+                            alert('Erro ao confirmar consulta!');
+                        }
+                    } catch (error) {
+                        console.error('Erro de comunicação:', error);
+                        alert('Erro de comunicação com o servidor.');
+                    }
+                },
+                populateYears() {
+                    const currentYear = new Date().getFullYear();
+                    this.yearOptions = Array.from({ length: 21 }, (_, i) => currentYear + i);
+                },
+                populateDays() {
+                    const daysInMonth = new Date(this.selectedYear, this.selectedMonth, 0).getDate();
+                    const firstDayOfWeek = new Date(this.selectedYear, this.selectedMonth - 1, 1).getDay(); // Primeiro dia do mês
+                    const today = new Date().toISOString().split('T')[0];
+
+                    const startOffset = firstDayOfWeek === 0 ? 6 : firstDayOfWeek - 1; 
+
+                    this.daysInMonth = [];
+
+                    // Preencher dias em branco para o início do calendário
+                    for (let i = 0; i < startOffset; i++) {
+                        this.daysInMonth.push({ day: '', date: '', isDisabled: true });
+                    }
+
+                    // Preencher os dias reais do mês
+                    for (let day = 1; day <= daysInMonth; day++) {
+                        const date = `${this.selectedYear}-${String(this.selectedMonth).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                        const dayOfWeek = new Date(this.selectedYear, this.selectedMonth - 1, day).getDay();
+                        
+                        // Desabilitar os domingos
+                        const isSunday = dayOfWeek === 0;
+
+                        this.daysInMonth.push({
+                            day,
+                            date,
+                            isDisabled: date < today || isSunday // Bloquear os domingos
+                        });
+                    }
+                },
+                previousMonth() {
+                    if (this.selectedMonth > 1) {
+                        this.selectedMonth--;
+                    } else {
+                        this.selectedMonth = 12; // Volta para dezembro
+                        this.selectedYear--;   // Retrocede para o ano anterior
+                    }
+                    this.populateDays();
+                    this.checkOccupiedTimes();
+                },
+                nextMonth() {
+                    if (this.selectedMonth < 12) {
+                        this.selectedMonth++;
+                    } else {
+                        this.selectedMonth = 1; // Volta para o primeiro mês
+                        this.selectedYear++;   // Avança para o próximo ano
+                    }
+                    this.populateDays();
+                    this.checkOccupiedTimes();
+                },
+                generateTimeSlots() {
+                    this.customMorningTimes = this.generateSlots('09:00', '11:30');
+                    this.customAfternoonTimes = this.generateSlots('14:00', '19:30');
+                },
+                generateSlots(start, end) {
+                    const startTime = new Date(`1970-01-01T${start}:00`);
+                    const endTime = new Date(`1970-01-01T${end}:00`);
+                    const slots = [];
+            
+                    while (startTime <= endTime) {
+                        slots.push(startTime.toTimeString().slice(0, 5) + 'H');
+                        startTime.setMinutes(startTime.getMinutes() + 30);
+                    }
+                    return slots;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
