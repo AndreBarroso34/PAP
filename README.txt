@@ -1,3 +1,4 @@
+!! A pasta BD é responsável pela ligação com a base de dados, para vê-la é preciso fazer download do ficheiro ZIP
 ---------------------------------- Iniciar projeto -----------------------------------------
 
 Para iniciar projeto deve fazer no terminal 
