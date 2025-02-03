@@ -98,3 +98,5 @@ Dentro da pasta IMG tem duas subpastas :
     -LOGOS  que contem os logos usados
 
 Dentro da pasta HEADER tem header.css que é responsável pelo o design do header.
+
+Dentro da pasta Base_de_dados está a base de dados MySQL
