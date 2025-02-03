@@ -263,21 +263,22 @@ footer p {
     margin-bottom: 6%;
 }
 
-/* Responsividade para telas menores */
+
+/* Responsividade */
 @media (max-width: 768px) {
     .rodape {
-        flex-direction: column; /* Empilha os itens no rodapé */
-        align-items: center; /* Centraliza os itens */
+        flex-direction: column; /* Empilha o logo e o conteúdo em ecras menores */
+        align-items: center;
     }
 
     .locais-geral {
-        flex-direction: column; /* Empilha as seções locais e redes sociais */
+        flex-direction: column; /* Empilha locais e redes sociais */
         align-items: center;
         text-align: center;
-        gap: 20px; /* Espaço entre as seções */
+        gap: 20px;
     }
 
     .locais, .redes-sociais {
-        margin: 10px 0; /* Margem para cada seção */
+        margin: 10px 0;
     }
 }
