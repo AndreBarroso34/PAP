@@ -9,7 +9,7 @@ De seguida deve clicar em http://localhost:3001 com Ctrl + botao direito do rato
 
 ---------------------------------- Backend -----------------------------------------------
 
-A pasta responsável pelo backend é a pasta "backend".
+A pasta responsável pelo backend é a pasta "BD".
 No ficheiro db.js é a ligação com base de dados.
 No ficheiro index.js é responsável por :
 
