@@ -1,4 +1,14 @@
 !! A pasta BD é responsável pela ligação com a base de dados, para vê-la é preciso fazer download do ficheiro ZIP
+
+---------------------------------- Instalar node -----------------------------------------
+O projeto usa a versão V22.13.1 do node.js.
+Para instalar o node no seu computador, precisa de : 
+    - Ir a https://nodejs.org/pt/download e instalar a versão V22.13.1(LTS);
+    - Executar o seguinte comando no cmd : node -v .
+
+
+
+
 ---------------------------------- Iniciar projeto -----------------------------------------
 
 Para iniciar projeto deve fazer no terminal 
@@ -38,7 +48,7 @@ No ficheiro index.js é responsável por :
         -Caso inválido ou ausente, retorna um erro HTTP apropriado.
 
 
----------------------------------- Backend -----------------------------------------------
+---------------------------------- Frontend -----------------------------------------------
 Na pasta ajuda está a ajuda toda sem ser preiciso conta.
 
 Dentro da pasta Ajuda está :
@@ -101,3 +111,5 @@ Dentro da pasta IMG tem duas subpastas :
 Dentro da pasta HEADER tem header.css que é responsável pelo o design do header.
 
 Dentro da pasta Base_de_dados está a base de dados MySQL
+
+O projeto usa vue.js importado no w3schools : https://www.w3schools.com/vue/vue_intro.php 
