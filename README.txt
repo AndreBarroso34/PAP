@@ -122,7 +122,7 @@ https://dev.mysql.com/downloads/workbench/
 Depois de instalado deve ir a pasta BD, de seguida clicar no ficheiro db.js e subestituir o seguindo codigo pelas credenciais do computador:
 const connection = mysql.createConnection({
     host: 'localhost',       // Define o endereço do servidor de banco de dados
-    user: 'root',            // Define o nome de utilizador para conexão
-    password: 'root123',     // Define a senha do banco de dados
+    user: '',                // Define o nome de utilizador para conexão
+    password: '',            // Define a palavra-passe do banco de dados(se tiver)
     database: 'pap',         // Define o nome do banco de dados a ser utilizado
 });
