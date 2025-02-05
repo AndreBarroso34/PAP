@@ -113,3 +113,16 @@ Dentro da pasta HEADER tem header.css que é responsável pelo o design do heade
 Dentro da pasta Base_de_dados está a base de dados MySQL
 
 O projeto usa vue.js importado no w3schools : https://www.w3schools.com/vue/vue_intro.php 
+
+---------------------------------- POR A BASE DE DADOS NO SEU PC -----------------------------------------------
+
+Para por a base de dados no seu pc deve instalar MySQL Workbench atravez do seguinte link: 
+https://dev.mysql.com/downloads/workbench/
+
+Depois de instalado deve ir a pasta BD, de seguida clicar no ficheiro db.js e subestituir o seguindo codigo pelas credenciais do computador:
+const connection = mysql.createConnection({
+    host: 'localhost',       // Define o endereço do servidor de banco de dados
+    user: 'root',            // Define o nome de utilizador para conexão
+    password: 'root123',     // Define a senha do banco de dados
+    database: 'pap',         // Define o nome do banco de dados a ser utilizado
+});
