@@ -2,7 +2,7 @@
 ---------------------------------- Iniciar projeto -----------------------------------------
 
 Para iniciar projeto deve fazer no terminal 
- - cd DB
+ - cd BD
  - node index.js
 
 De seguida deve clicar em http://localhost:3001 com Ctrl + botao direito do rato.
