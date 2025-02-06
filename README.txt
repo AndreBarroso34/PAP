@@ -101,3 +101,16 @@ Dentro da pasta IMG tem duas subpastas :
 Dentro da pasta HEADER tem header.css que é responsável pelo o design do header.
 
 Dentro da pasta Base_de_dados está a base de dados MySQL
+
+
+---------------------------------- Como aceder a assistentes -----------------------------------------------
+Na conta assistentes é possivel receber os pedidos, marcar consultas e ver os horarios das consultas de cada medico,as credenciais são : 
+email: carol@welldentys.com
+palavra-passe : 123456
+
+
+---------------------------------- Como aceder a medicos -----------------------------------------------
+
+Na conta assistentes é possivel  marcar consultas e ver o respeitvo horário, as credenciais são : 
+email: medicajoaquina@welldentys.com
+palavra-passe : 123456
