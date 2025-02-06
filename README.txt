@@ -1,8 +1,18 @@
 !! A pasta BD é responsável pela ligação com a base de dados, para vê-la é preciso fazer download do ficheiro ZIP
+
+---------------------------------- Instalar node -----------------------------------------
+O projeto usa a versão V22.13.1 do node.js.
+Para instalar o node no seu computador, precisa de : 
+    - Ir a https://nodejs.org/pt/download e instalar a versão V22.13.1(LTS);
+    - Executar o seguinte comando no cmd : node -v .
+
+
+
+
 ---------------------------------- Iniciar projeto -----------------------------------------
 
 Para iniciar projeto deve fazer no terminal 
- - cd DB
+ - cd BD
  - node index.js
 
 De seguida deve clicar em http://localhost:3001 com Ctrl + botao direito do rato.
@@ -38,7 +48,7 @@ No ficheiro index.js é responsável por :
         -Caso inválido ou ausente, retorna um erro HTTP apropriado.
 
 
----------------------------------- Backend -----------------------------------------------
+---------------------------------- Frontend -----------------------------------------------
 Na pasta ajuda está a ajuda toda sem ser preiciso conta.
 
 Dentro da pasta Ajuda está :
@@ -102,7 +112,6 @@ Dentro da pasta HEADER tem header.css que é responsável pelo o design do heade
 
 Dentro da pasta Base_de_dados está a base de dados MySQL
 
-
 ---------------------------------- Como aceder a assistentes -----------------------------------------------
 Na conta assistentes é possivel receber os pedidos, marcar consultas e ver os horarios das consultas de cada medico,as credenciais são : 
 email: carol@welldentys.com
@@ -114,3 +123,18 @@ palavra-passe : 123456
 Na conta assistentes é possivel  marcar consultas e ver o respeitvo horário, as credenciais são : 
 email: medicajoaquina@welldentys.com
 palavra-passe : 123456
+=======
+O projeto usa vue.js importado no w3schools : https://www.w3schools.com/vue/vue_intro.php 
+
+---------------------------------- POR A BASE DE DADOS NO SEU PC -----------------------------------------------
+
+Para por a base de dados no seu pc deve instalar MySQL Workbench atravez do seguinte link: 
+https://dev.mysql.com/downloads/workbench/
+
+Depois de instalado deve ir a pasta BD, de seguida clicar no ficheiro db.js e subestituir o seguindo codigo pelas credenciais do computador:
+const connection = mysql.createConnection({
+    host: 'localhost',       // Define o endereço do servidor de banco de dados
+    user: '',                // Define o nome de utilizador para conexão
+    password: '',            // Define a palavra-passe do banco de dados(se tiver)
+    database: 'pap',         // Define o nome do banco de dados a ser utilizado
+});
