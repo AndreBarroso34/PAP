@@ -52,7 +52,7 @@ label {
 .input-group {
     display: flex;
     align-items: center; /* Alinha os itens verticalmente */
-    gap: 57px; /* Espaçamento entre a label e o campo de entrada */
+    gap: 67px; /* Espaçamento entre a label e o campo de entrada */
 }
 
 /* Estilo para as labels dentro do grupo de entrada */
