@@ -138,3 +138,17 @@ const connection = mysql.createConnection({
     password: '',            // Define a palavra-passe do banco de dados(se tiver)
     database: 'pap',         // Define o nome do banco de dados a ser utilizado
 });
+
+---------------------------------- Como aceder a assistentes -----------------------------------------------
+Na conta assistentes é possivel receber os pedidos, marcar consultas e ver os horarios das consultas de cada medico,as credenciais são : 
+email: carol@welldentys.com
+palavra-passe : 123456
+
+
+---------------------------------- Como aceder a medicos -----------------------------------------------
+
+Na conta assistentes é possivel  marcar consultas e ver o respeitvo horário, as credenciais são : 
+email: medicajoaquina@welldentys.com
+palavra-passe : 123456
+=======
+
